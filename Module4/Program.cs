@@ -1,33 +1,45 @@
-﻿namespace Module4
+﻿using System.Drawing;
+using System.Net.Security;
+
+namespace Module4
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-            var arr = new int[] { 5, 6, 9, 1, 2, 3, 4 };
+            (string Name, string LastName, string Login, int LoginLength, bool HasPet, double Age, string[] favcolors) User;
+            
+            Console.Write("Enter your name: ");
+            User.Name = Console.ReadLine();
+            
+            Console.Write("Enter yoyr LastName: ");
+            User.LastName = Console.ReadLine();
+            
+            Console.Write("Enter your Login: ");
+            User.Login = Console.ReadLine();
+            User.LoginLength = User.Login.Length;
 
-            int temp;
+            Console.Write("Do you have a pet? Y or N: ");
+            User.HasPet = Console.ReadLine() == "Y" ? true : false;
 
-            for (int i = 0; i < arr.Length; i++)
+            Console.Write("Enter your age: ");
+            User.Age = double.Parse(Console.ReadLine());
+
+            Console.WriteLine("Now enter your three favourite colours");
+            User.favcolors = new string[3];
+            string[] colrs = { "first", "second", "third" };
+            for (int i = 0; i < 3; i++)
             {
-                for (int j = i + 1; j < arr.Length; j++)
-                {
-                    if (arr[i] > arr[j])
-                    {
-                        temp = arr[i];
-                        arr[i] = arr[j];
-                        arr[j] = temp;
-                    }
-                    foreach (var item in arr)
-                    {
-                        Console.Write(item);
-                        
-                    }
-                    Console.WriteLine();
-                }
+                Console.Write($"Enter {colrs[i]} favourite colour: ");
+                User.favcolors[i] = Console.ReadLine();
             }
 
-            
+            Console.WriteLine(User.Name);
+            Console.WriteLine(User.LastName);
+            Console.WriteLine(User.Login);
+            Console.WriteLine(User.LoginLength);
+            Console.WriteLine(User.HasPet);
+            Console.WriteLine(User.Age);
 
             Console.ReadKey();
         }
